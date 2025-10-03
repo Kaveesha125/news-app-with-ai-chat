@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NewsGenius</string>
+    <string name="app_name">My News and AI App</string>
     <string name="title_home">News</string>
     <string name="title_dashboard">Gemini</string>
     <string name="title_notifications">Notifications</string>
