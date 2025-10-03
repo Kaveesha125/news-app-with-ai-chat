@@ -64,6 +64,13 @@ NEWS_API_KEY=paste_your_news_api_key_here
 > [!WARNING]
 > If you accidentally push real keys, revoke and replace them immediately.
 
+## Dark Theme
+![Dark](dark.jpg)
+
+## Light Theme
+![Light](light.jpg)
+
+
 ---
 
 Demonstration:
