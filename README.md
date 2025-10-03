@@ -64,3 +64,10 @@ NEWS_API_KEY=paste_your_news_api_key_here
 > [!WARNING]
 > If you accidentally push real keys, revoke and replace them immediately.
 
+---
+
+Demonstration:
+
+![Tutorial](v1.0.0_2x.webp)
+
+---
