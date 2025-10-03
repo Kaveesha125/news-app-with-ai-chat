@@ -1,6 +1,7 @@
 package com.example.mycustomgeminiaichat.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,14 +103,25 @@ public class HomeFragment extends Fragment {
                         showNoResultsMessage();
                     }
                 } else {
+                    // ADD LOGS HERE
+                    Log.e("NewsAPI", "Error: " + response.code() + " - " + response.message());
+                    try {
+                        Log.e("NewsAPI", "Error body: " + response.errorBody().string());
+                    } catch (Exception e) {}
+
                     showErrorMessage("Failed to fetch news");
                 }
             }
 
             @Override
             public void onFailure(Call<NewsResponse> call, Throwable t) {
+                // ADD LOGS HERE
+                Log.e("NewsAPI", "Request failed: " + t.getMessage());
+                t.printStackTrace();
+
                 showErrorMessage("Network error: " + t.getMessage());
             }
+
         });
     }
 
