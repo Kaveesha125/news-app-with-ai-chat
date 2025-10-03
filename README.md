@@ -68,6 +68,6 @@ NEWS_API_KEY=paste_your_news_api_key_here
 
 Demonstration:
 
-![Tutorial](v1.0.0_2x.webp)
+![Tutorial](v1.0.0_2x_demo.webp)
 
 ---
