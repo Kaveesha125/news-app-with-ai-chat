@@ -125,7 +125,7 @@ public class DashboardFragment extends Fragment {
     private void sendMessage(String model, String message) {
         // Show loading state
         setLoadingState(true);
-        markwon.setMarkdown(responseText, "Generating response...");
+        markwon.setMarkdown(responseText, "Generating response....");
         copyButton.setVisibility(View.GONE);
 
         apiService.generateContent(model, message, new GeminiApiService.ApiCallback() {
