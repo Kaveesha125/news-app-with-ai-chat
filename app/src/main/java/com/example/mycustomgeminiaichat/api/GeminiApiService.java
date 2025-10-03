@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import okhttp3.*;
+import java.util.concurrent.TimeUnit;
 
 public class GeminiApiService {
 
@@ -18,9 +19,38 @@ public class GeminiApiService {
     private final Gson gson;
 
     public GeminiApiService() {
-        this.client = new OkHttpClient();
+        this.client = new OkHttpClient.Builder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .build();
         this.gson = new Gson();
     }
+    public void generateContentWithRetry(String model, String prompt, ApiCallback callback) {
+        generateContentWithRetry(model, prompt, callback, 0, 3);
+    }
+
+    private void generateContentWithRetry(String model, String prompt, ApiCallback callback, int attempt, int maxRetries) {
+        generateContent(model, prompt, new ApiCallback() {
+            @Override
+            public void onSuccess(String response) {
+                callback.onSuccess(response);
+            }
+
+            @Override
+            public void onError(String error) {
+                if (error.contains("timeout") && attempt < maxRetries - 1) {
+                    // Retry after delay
+                    new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                        generateContentWithRetry(model, prompt, callback, attempt + 1, maxRetries);
+                    }, 1000L * (attempt + 1));
+                } else {
+                    callback.onError(error);
+                }
+            }
+        });
+    }
+
 
     public interface ApiCallback {
         void onSuccess(String response);

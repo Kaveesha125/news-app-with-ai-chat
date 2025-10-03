@@ -41,10 +41,11 @@ public class DashboardFragment extends Fragment {
 
     // Available Gemini models
     private String[] geminiModels = {
-        "gemini-2.5-flash",
-        "gemini-1.5-pro-latest",
-        "gemini-1.5-flash-latest",
-        "gemini-1.5-flash",
+            "gemini-2.5-flash",        // Fast, stable, cost-effective
+            "gemini-2.5-pro",          // Most capable, stable
+            "gemini-2.0-flash-001",    // Older but very stable
+            "gemini-flash-latest",     // Auto-updates to latest stable
+            "gemini-pro-latest"        // Auto-updates to latest Pro
     };
 
     public View onCreateView(@NonNull LayoutInflater inflater,
